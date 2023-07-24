@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My To-do App</title>
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+
+    <%- include("partials/header.ejs") %>
+    
+    <div class="main">
+      <div class="date">
+        <%= date  %>
+      </div>
+      <div class="items">
+        <% for(var i = 0; i < tasks.length;i++) { %>
+          <div class="item">
+            <input class="checkbox" type="checkbox" name="text<%=i%>" id="text<%=i%>">
+            <label class="text-label" for="text<%=i%>"><%= tasks[i]%></label>
+          </div>
+          <% } %>
+        <div class="add-item item">
+          <form class="form" action="/todayAddTask" method="post">
+            <label for="newTask"></label>
+            <input type="text" name="newTask" id="newTask" placeholder="New Task">
+            <input type="submit" value="+">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <%- include("partials/footer.ejs") %>
+
+    <script>
+      // Sayfa yüklendiğinde çalışacak fonksiyon
+      document.addEventListener("DOMContentLoaded", function() {
+          // Tüm checkboxları seçin
+          const allCheckBoxes = document.querySelectorAll(".checkbox");
+  
+          // Her bir checkbox için olay dinleyici ekleyin
+          allCheckBoxes.forEach(function(checkbox) {
+              checkbox.addEventListener("change", function() {
+                  // Etkinleştirilen checkbox'un durumunu kontrol edin
+                  if (this.checked) {
+                      // Checkbox seçiliyse, ilişkili metin etiketini üstünü çiz
+                      this.nextElementSibling.style.textDecoration = "line-through";
+                  } else {
+                      // Checkbox seçili değilse, üstünü çizmeyi kaldır
+                      this.nextElementSibling.style.textDecoration = "none";
+                  }
+              });
+          });
+      });
+  </script>
+  </body>
+</html>
