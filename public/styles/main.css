@@ -15,6 +15,7 @@ body {
 .main {
     margin-top: 50px;
     margin-bottom: 30px;
+    width: 400px;
 }
 .header {
     display: flex;
@@ -38,7 +39,7 @@ a {
 .date {
     background-color: #a683e3;
     color: white;
-    width: 500px;
+    max-width: 400px;
     min-height: 75px;
     border-radius: 8px;
     display: flex;
@@ -48,7 +49,7 @@ a {
 }
 .items {
     margin-top: 25px;
-    width: 500px;
+    max-width: 400px;
     background-color: white;
     border-radius: 8px;
     
@@ -108,3 +109,4 @@ input[type="submit"] {
 .selected-checkbox {
     text-decoration: line-through;
 }
+
